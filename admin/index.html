@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>車両管理 | ことこと株式会社</title>
+<link rel="icon" href="data:," />
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<div id="login" class="login">
+  <form class="login-card">
+    <p class="eyebrow">KOTOKOTO ADMIN</p>
+    <h1>車両管理</h1>
+    <p>管理キーを入力してください。初期キーはCGI側で必ず変更してください。</p>
+    <input id="adminKey" type="password" autocomplete="current-password" placeholder="管理キー" />
+    <button type="submit">ログイン</button>
+  </form>
+</div>
+
+<main id="app" class="app" hidden>
+  <header class="bar">
+    <div>
+      <p class="eyebrow">VEHICLE CMS</p>
+      <h1>車両情報を編集</h1>
+    </div>
+    <div class="actions">
+      <a href="../index.html" target="_blank">公開ページを開く</a>
+      <button id="reloadBtn" class="ghost">再読込</button>
+      <button id="saveBtn">保存して公開反映</button>
+    </div>
+  </header>
+
+  <div id="notice" class="notice" hidden></div>
+
+  <section class="layout">
+    <aside class="list-panel">
+      <button id="newBtn" class="add">+ 車両を追加</button>
+      <div id="carList" class="car-list"></div>
+    </aside>
+
+    <form id="editor" class="editor">
+      <div class="editor-head">
+        <div>
+          <p class="eyebrow">EDIT</p>
+          <h2 id="editorTitle">車両を選択</h2>
+        </div>
+        <label class="switch">
+          <input id="published" type="checkbox" />
+          <span>公開する</span>
+        </label>
+      </div>
+
+      <div class="grid">
+        <label>ID<input id="id" required pattern="[a-zA-Z0-9_-]+" /></label>
+        <label>メーカー<input id="maker" /></label>
+        <label>車名<input id="name" /></label>
+        <label>グレード<input id="grade" /></label>
+        <label>年式<input id="year" type="number" min="1980" max="2100" /></label>
+        <label>走行距離（万km）<input id="mileage" type="number" min="0" step="0.1" /></label>
+        <label>価格（万円）<input id="price" type="number" min="0" /></label>
+        <label>車検<input id="inspection" /></label>
+        <label>ミッション<input id="mission" /></label>
+        <label>燃料<input id="fuel" /></label>
+        <label>色<input id="color" /></label>
+        <label>排気量<input id="displacement" /></label>
+        <label>ボディタイプ<input id="body" /></label>
+        <label>乗車定員<input id="seats" type="number" min="1" /></label>
+      </div>
+
+      <label>タグ（カンマ区切り）<input id="tags" placeholder="SUV, ハイブリッド, 禁煙車" /></label>
+      <label>主な装備（カンマ区切り）<textarea id="features" rows="3"></textarea></label>
+      <label>この車両について<textarea id="note" rows="5"></textarea></label>
+
+      <section class="photo-box">
+        <div class="photo-head">
+          <div>
+            <p class="eyebrow">PHOTOS</p>
+            <h3>実車写真</h3>
+          </div>
+          <label class="upload">
+            写真を選択
+            <input id="photoInput" type="file" accept="image/jpeg,image/png,image/webp" multiple />
+          </label>
+        </div>
+        <div id="photos" class="photos"></div>
+      </section>
+
+      <div class="danger">
+        <button id="deleteBtn" type="button">この車両を削除</button>
+      </div>
+    </form>
+  </section>
+</main>
+
+<script src="admin.js"></script>
+</body>
+</html>

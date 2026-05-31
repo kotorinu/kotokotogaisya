@@ -7,9 +7,10 @@ function HomePage({ go }) {
         <div className="wrap">
           <div>
             <Eyebrow en="KOTOKOTO INC." ja="自動車 × DX" />
-            <h1 style={{ marginTop: 24, fontWeight: "600", fontSize: "60px" }}>
-              まじめに、 コツコツ。<br />
-              <span className="em">“こと”</span>を、<br />　やさしく前へ。
+            <h1 style={{ marginTop: 24, fontWeight: "600", fontSize: "clamp(38px,4.4vw,60px)" }}>
+              まじめに、<br />
+              　コツコツ。<br />
+              <span className="em">“こと”</span>を、<br /><span className="nowrap">やさしく前へ。</span>
             </h1>
             <p className="lead" style={{ maxWidth: "500px", width: "100%" }}>
               ことこと株式会社は、大阪・寝屋川を拠点に
@@ -111,25 +112,24 @@ function HomePage({ go }) {
       </section>
 
       {/* DX preview strip */}
-      <section className="band" style={{ background: "var(--accent-ink)" }}>
+      <section className="band dx-preview" style={{ background: "var(--accent-ink)" }}>
         <div className="wrap" style={{ padding: "84px 32px" }}>
-          <div style={{ maxWidth: 760, width: "100%" }}>
+          <div className="dx-preview-copy">
             <Eyebrow en="DX SUPPORT" ja="DX支援" light />
-            <h2 style={{ marginTop: 18, color: "#fff", fontSize: "clamp(26px,3vw,38px)" }}>「人手が足りない」
-  を、仕組みで補う。
+            <h2 style={{ marginTop: 18, color: "#fff", fontSize: "clamp(26px,3vw,38px)" }}>「人手が足りない」を、仕組みで補う。
             </h2>
-            <p style={{ color: "rgba(255,255,255,.72)", marginTop: 16, fontSize: 15 }}>
-              AIと自動化で、毎日の手間を減らす。 Web制作で、伝わる入り口をつくる。<br />御社の“ちょうどいいDX”を、無理のない一歩からご提案します。
-            </p>
           </div>
-          <div style={{ display: "flex", flexWrap: "wrap", gap: 10, marginTop: 30, height: "96px", flexFlow: "wrap" }}>
+          <p className="dx-preview-lead">
+            AIと自動化で、毎日の手間を減らす。 Web制作で、伝わる入り口をつくる。<br />御社の“ちょうどいいDX”を、無理のない一歩からご提案します。
+          </p>
+          <div className="dx-preview-services">
             {SERVICES.map((s) =>
             <span key={s.id} style={{ fontSize: 13, color: "#fff", border: "1px solid rgba(255,255,255,.26)", padding: "9px 16px", borderRadius: 999, letterSpacing: ".02em" }}>
                 {s.title}
               </span>
             )}
           </div>
-          <div style={{ marginTop: 30 }}>
+          <div className="dx-preview-action">
             <a className="btn btn--solid" style={{ background: "#fff", color: "var(--accent-ink)" }} onClick={() => go("dx")}>DX支援の詳細へ<Icon.arrow /></a>
           </div>
         </div>

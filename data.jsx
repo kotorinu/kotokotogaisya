@@ -133,11 +133,14 @@ const WORKS = [
 ];
 
 const SITE_ASSETS = {
-  hero: "assets/images/hero-showroom-dx.png",
+  hero: "assets/images/hero-office-dx-subtle-car.png",
   businessVehicles: "assets/images/business-vehicles.png",
   businessDx: "assets/images/business-dx.png",
   dxHero: "assets/images/business-dx.png",
   workAutomation: "assets/images/work-automation.png",
+  workHomepage: "assets/images/work-homepage.png",
+  workInventory: "assets/images/work-inventory.png",
+  workChatbot: "assets/images/work-chatbot.png",
   company: "assets/images/business-vehicles.png",
 };
 

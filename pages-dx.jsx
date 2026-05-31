@@ -68,9 +68,9 @@ function DXPage({ go }) {
         <SHead en="WORKS" ja="取り組み事例" title="制作・導入の事例"
           lead="自社サイトの内製や在庫自動更新など、まず自分たちで試したことを、御社にもお届けします。" />
         <div className="works">
-          {WORKS.map((w) => (
+          {WORKS.map((w, i) => (
             <div className="work" key={w.title}>
-              <Ph className="pic" src={SITE_ASSETS.workAutomation} alt={w.title} />
+              <Ph className="pic" src={[SITE_ASSETS.workHomepage, SITE_ASSETS.workInventory, SITE_ASSETS.workChatbot][i] || SITE_ASSETS.workAutomation} alt={w.title} />
               <div className="b">
                 <div className="tag">{w.tag}</div>
                 <h3>{w.title}</h3>
@@ -78,10 +78,6 @@ function DXPage({ go }) {
               </div>
             </div>
           ))}
-        </div>
-        <div className="feed-note" style={{ marginTop: 26 }}>
-          <span className="dot"></span>
-          GitHub のポートフォリオを連携いただければ、実績として掲載できます
         </div>
       </section>
 

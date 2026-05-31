@@ -25,6 +25,10 @@ function App() {
   const [cars, setCars] = useStateA(window.CARS || []);
 
   useEffectA(() => {
+    if (window.location.protocol === "file:") {
+      setCars(window.CARS || []);
+      return;
+    }
     fetch("data/cars.json", { cache: "no-store" })
       .then((res) => res.ok ? res.json() : Promise.reject(new Error("cars.json not found")))
       .then((rows) => setCars(Array.isArray(rows) ? rows : []))

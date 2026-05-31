@@ -49,6 +49,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 .eyebrow::before{content:"";width:26px;height:1px;background:var(--accent);display:inline-block;}
 
 h1,h2,h3{font-family:var(--display);font-weight:600;line-height:1.32;letter-spacing:.01em;}
+.nowrap{white-space:nowrap;}
 .measure{max-width:62ch;}
 
 /* ---------- layout ---------- */
@@ -247,6 +248,12 @@ nav.main a.active::after{content:"";position:absolute;left:0;bottom:-2px;width:1
 .band .btn--solid:hover{background:rgba(255,255,255,.86);}
 .band .btn--ghost{background:transparent;border-color:rgba(255,255,255,.3);color:#fff;}
 .band .btn--ghost:hover{border-color:#fff;}
+.dx-preview .wrap{grid-template-columns:minmax(0,.95fr) minmax(420px,1.15fr);align-items:start;}
+.dx-preview-copy{grid-column:1/-1;min-width:0;}
+.dx-preview-copy h2{white-space:nowrap;}
+.dx-preview-lead{color:rgba(255,255,255,.72);font-size:15px;margin:0;max-width:620px;}
+.dx-preview-services{display:flex;flex-wrap:wrap;gap:12px;margin-top:0;align-content:center;}
+.dx-preview-action{grid-column:1/-1;margin-top:8px;}
 
 /* ---------- company ---------- */
 .cprofile{width:100%;border-collapse:collapse;font-size:14px;}
@@ -291,6 +298,11 @@ footer .legal{margin-top:48px;padding-top:24px;border-top:1px solid var(--line-s
   .svc{grid-template-columns:auto 1fr;gap:20px;}
   .svc .pts{grid-column:1/-1;flex-direction:row;flex-wrap:wrap;}
   .band .wrap{grid-template-columns:1fr;}
+  .dx-preview .wrap{grid-template-columns:1fr;}
+  .dx-preview-copy h2{white-space:normal;}
+  .dx-preview-lead{max-width:none;}
+  .dx-preview-services{margin-top:8px;}
+  .dx-preview-action{margin-top:4px;}
   .formgrid{grid-template-columns:1fr;}
   footer.site .top{grid-template-columns:1fr 1fr;}
   nav.main{display:none;}

@@ -773,11 +773,14 @@ const WORKS = [{
   desc: "FAQを学習したチャットで、夜間・休業日もカバー。"
 }];
 const SITE_ASSETS = {
-  hero: "assets/images/hero-showroom-dx.png",
+  hero: "assets/images/hero-office-dx-subtle-car.png",
   businessVehicles: "assets/images/business-vehicles.png",
   businessDx: "assets/images/business-dx.png",
   dxHero: "assets/images/business-dx.png",
   workAutomation: "assets/images/work-automation.png",
+  workHomepage: "assets/images/work-homepage.png",
+  workInventory: "assets/images/work-inventory.png",
+  workChatbot: "assets/images/work-chatbot.png",
   company: "assets/images/business-vehicles.png"
 };
 Object.assign(window, {
@@ -1116,11 +1119,13 @@ function HomePage({
     style: {
       marginTop: 24,
       fontWeight: "600",
-      fontSize: "60px"
+      fontSize: "clamp(38px,4.4vw,60px)"
     }
-  }, "\u307E\u3058\u3081\u306B\u3001 \u30B3\u30C4\u30B3\u30C4\u3002", React.createElement("br", null), React.createElement("span", {
+  }, "\u307E\u3058\u3081\u306B\u3001", React.createElement("br", null), "\u3000\u30B3\u30C4\u30B3\u30C4\u3002", React.createElement("br", null), React.createElement("span", {
     className: "em"
-  }, "\u201C\u3053\u3068\u201D"), "\u3092\u3001", React.createElement("br", null), "\u3000\u3084\u3055\u3057\u304F\u524D\u3078\u3002"), React.createElement("p", {
+  }, "\u201C\u3053\u3068\u201D"), "\u3092\u3001", React.createElement("br", null), React.createElement("span", {
+    className: "nowrap"
+  }, "\u3084\u3055\u3057\u304F\u524D\u3078\u3002")), React.createElement("p", {
     className: "lead",
     style: {
       maxWidth: "500px",
@@ -1240,7 +1245,7 @@ function HomePage({
   }, React.createElement("span", {
     className: "dot"
   }), "\u5728\u5EAB\u60C5\u5831\u306F\u30AB\u30FC\u30BB\u30F3\u30B5\u30FC\uFF0F\u30B0\u30FC\u30CD\u30C3\u30C8\u9023\u643A\u3067\u968F\u6642\u66F4\u65B0\u3055\u308C\u307E\u3059\uFF08\u203B\u30C7\u30E2\u753B\u9762\u3067\u306F\u30B5\u30F3\u30D7\u30EB\u3092\u8868\u793A\u3057\u3066\u3044\u307E\u3059\uFF09")), React.createElement("section", {
-    className: "band",
+    className: "band dx-preview",
     style: {
       background: "var(--accent-ink)"
     }
@@ -1250,10 +1255,7 @@ function HomePage({
       padding: "84px 32px"
     }
   }, React.createElement("div", {
-    style: {
-      maxWidth: 760,
-      width: "100%"
-    }
+    className: "dx-preview-copy"
   }, React.createElement(Eyebrow, {
     en: "DX SUPPORT",
     ja: "DX\u652F\u63F4",
@@ -1264,21 +1266,10 @@ function HomePage({
       color: "#fff",
       fontSize: "clamp(26px,3vw,38px)"
     }
-  }, "\u300C\u4EBA\u624B\u304C\u8DB3\u308A\u306A\u3044\u300D \xA0 \u3092\u3001\u4ED5\u7D44\u307F\u3067\u88DC\u3046\u3002"), React.createElement("p", {
-    style: {
-      color: "rgba(255,255,255,.72)",
-      marginTop: 16,
-      fontSize: 15
-    }
-  }, "AI\u3068\u81EA\u52D5\u5316\u3067\u3001\u6BCE\u65E5\u306E\u624B\u9593\u3092\u6E1B\u3089\u3059\u3002 Web\u5236\u4F5C\u3067\u3001\u4F1D\u308F\u308B\u5165\u308A\u53E3\u3092\u3064\u304F\u308B\u3002", React.createElement("br", null), "\u5FA1\u793E\u306E\u201C\u3061\u3087\u3046\u3069\u3044\u3044DX\u201D\u3092\u3001\u7121\u7406\u306E\u306A\u3044\u4E00\u6B69\u304B\u3089\u3054\u63D0\u6848\u3057\u307E\u3059\u3002")), React.createElement("div", {
-    style: {
-      display: "flex",
-      flexWrap: "wrap",
-      gap: 10,
-      marginTop: 30,
-      height: "96px",
-      flexFlow: "wrap"
-    }
+  }, "\u300C\u4EBA\u624B\u304C\u8DB3\u308A\u306A\u3044\u300D\u3092\u3001\u4ED5\u7D44\u307F\u3067\u88DC\u3046\u3002")), React.createElement("p", {
+    className: "dx-preview-lead"
+  }, "AI\u3068\u81EA\u52D5\u5316\u3067\u3001\u6BCE\u65E5\u306E\u624B\u9593\u3092\u6E1B\u3089\u3059\u3002 Web\u5236\u4F5C\u3067\u3001\u4F1D\u308F\u308B\u5165\u308A\u53E3\u3092\u3064\u304F\u308B\u3002", React.createElement("br", null), "\u5FA1\u793E\u306E\u201C\u3061\u3087\u3046\u3069\u3044\u3044DX\u201D\u3092\u3001\u7121\u7406\u306E\u306A\u3044\u4E00\u6B69\u304B\u3089\u3054\u63D0\u6848\u3057\u307E\u3059\u3002"), React.createElement("div", {
+    className: "dx-preview-services"
   }, SERVICES.map(s => React.createElement("span", {
     key: s.id,
     style: {
@@ -1290,9 +1281,7 @@ function HomePage({
       letterSpacing: ".02em"
     }
   }, s.title))), React.createElement("div", {
-    style: {
-      marginTop: 30
-    }
+    className: "dx-preview-action"
   }, React.createElement("a", {
     className: "btn btn--solid",
     style: {
@@ -1673,25 +1662,18 @@ function DXPage({
     lead: "\u81EA\u793E\u30B5\u30A4\u30C8\u306E\u5185\u88FD\u3084\u5728\u5EAB\u81EA\u52D5\u66F4\u65B0\u306A\u3069\u3001\u307E\u305A\u81EA\u5206\u305F\u3061\u3067\u8A66\u3057\u305F\u3053\u3068\u3092\u3001\u5FA1\u793E\u306B\u3082\u304A\u5C4A\u3051\u3057\u307E\u3059\u3002"
   }), React.createElement("div", {
     className: "works"
-  }, WORKS.map(w => React.createElement("div", {
+  }, WORKS.map((w, i) => React.createElement("div", {
     className: "work",
     key: w.title
   }, React.createElement(Ph, {
     className: "pic",
-    src: SITE_ASSETS.workAutomation,
+    src: [SITE_ASSETS.workHomepage, SITE_ASSETS.workInventory, SITE_ASSETS.workChatbot][i] || SITE_ASSETS.workAutomation,
     alt: w.title
   }), React.createElement("div", {
     className: "b"
   }, React.createElement("div", {
     className: "tag"
-  }, w.tag), React.createElement("h3", null, w.title), React.createElement("p", null, w.desc))))), React.createElement("div", {
-    className: "feed-note",
-    style: {
-      marginTop: 26
-    }
-  }, React.createElement("span", {
-    className: "dot"
-  }), "GitHub \u306E\u30DD\u30FC\u30C8\u30D5\u30A9\u30EA\u30AA\u3092\u9023\u643A\u3044\u305F\u3060\u3051\u308C\u3070\u3001\u5B9F\u7E3E\u3068\u3057\u3066\u63B2\u8F09\u3067\u304D\u307E\u3059")), React.createElement(Band, {
+  }, w.tag), React.createElement("h3", null, w.title), React.createElement("p", null, w.desc)))))), React.createElement(Band, {
     go: go
   }));
 }
@@ -1991,6 +1973,10 @@ function App() {
   const [t, setTweak] = useTweaks(TWEAK_DEFAULTS);
   const [cars, setCars] = useStateA(window.CARS || []);
   useEffectA(() => {
+    if (window.location.protocol === "file:") {
+      setCars(window.CARS || []);
+      return;
+    }
     fetch("data/cars.json", {
       cache: "no-store"
     }).then(res => res.ok ? res.json() : Promise.reject(new Error("cars.json not found"))).then(rows => setCars(Array.isArray(rows) ? rows : [])).catch(() => setCars(window.CARS || []));

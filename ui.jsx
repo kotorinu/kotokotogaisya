@@ -69,7 +69,7 @@ function Header({ route, go }) {
       <div className="topbar">
         <div className="wrap">
           <span className="muted">大阪府寝屋川市黒原橘町4-1</span>
-          <span><b>TEL 072-814-9416</b> <span className="muted">／ 受付 9:00–18:00（日祝休）</span></span>
+          <span><b>TEL 072-814-9416</b> <span className="muted">／ お気軽にお問い合わせください。</span></span>
         </div>
       </div>
       <header className="site">
@@ -115,7 +115,7 @@ function Header({ route, go }) {
         </nav>
         <div className="drawer-info">
           <b>TEL 072-814-9416</b>
-          <span>受付 9:00–18:00（日祝休）</span>
+          <span>お気軽にお問い合わせください。</span>
         </div>
       </aside>
     </React.Fragment>);

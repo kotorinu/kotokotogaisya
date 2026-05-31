@@ -948,7 +948,7 @@ function Header({
     className: "muted"
   }, "\u5927\u962A\u5E9C\u5BDD\u5C4B\u5DDD\u5E02\u9ED2\u539F\u6A58\u753A4-1"), React.createElement("span", null, React.createElement("b", null, "TEL 072-814-9416"), " ", React.createElement("span", {
     className: "muted"
-  }, "\uFF0F \u53D7\u4ED8 9:00\u201318:00\uFF08\u65E5\u795D\u4F11\uFF09")))), React.createElement("header", {
+  }, "\uFF0F \u304A\u6C17\u8EFD\u306B\u304A\u554F\u3044\u5408\u308F\u305B\u304F\u3060\u3055\u3044\u3002")))), React.createElement("header", {
     className: "site"
   }, React.createElement("div", {
     className: "wrap"
@@ -1010,7 +1010,7 @@ function Header({
     onClick: () => navTo("contact")
   }, React.createElement("span", null, "\u304A\u554F\u3044\u5408\u308F\u305B"), React.createElement("small", null, "CONTACT"))), React.createElement("div", {
     className: "drawer-info"
-  }, React.createElement("b", null, "TEL 072-814-9416"), React.createElement("span", null, "\u53D7\u4ED8 9:00\u201318:00\uFF08\u65E5\u795D\u4F11\uFF09"))));
+  }, React.createElement("b", null, "TEL 072-814-9416"), React.createElement("span", null, "\u304A\u6C17\u8EFD\u306B\u304A\u554F\u3044\u5408\u308F\u305B\u304F\u3060\u3055\u3044\u3002"))));
 }
 function Eyebrow({
   en,
@@ -1150,11 +1150,19 @@ function HomePage({
       fontWeight: "600",
       fontSize: "clamp(38px,4.4vw,60px)"
     }
+  }, React.createElement("span", {
+    className: "hero-pc"
   }, "\u307E\u3058\u3081\u306B\u3001", React.createElement("br", null), "\u3000\u30B3\u30C4\u30B3\u30C4\u3002", React.createElement("br", null), React.createElement("span", {
     className: "em"
   }, "\u201C\u3053\u3068\u201D"), "\u3092\u3001", React.createElement("br", null), React.createElement("span", {
     className: "nowrap"
-  }, "\u3084\u3055\u3057\u304F\u524D\u3078\u3002")), React.createElement("p", {
+  }, "\u3084\u3055\u3057\u304F\u524D\u3078\u3002")), React.createElement("span", {
+    className: "hero-sp"
+  }, "\u307E\u3058\u3081\u306B\u30B3\u30C4\u30B3\u30C4\u3002", React.createElement("br", null), React.createElement("span", {
+    className: "nowrap"
+  }, React.createElement("span", {
+    className: "em"
+  }, "\u201C\u3053\u3068\u201D"), "\u3092\u3001\u3084\u3055\u3057\u304F\u524D\u3078\u3002"))), React.createElement("p", {
     className: "lead",
     style: {
       maxWidth: "500px",
@@ -1710,7 +1718,7 @@ window.DXPage = DXPage;
 function CompanyPage({
   go
 }) {
-  const profile = [["商号", "ことこと株式会社（Kotokoto Inc.）"], ["所在地", "〒572-0000　大阪府寝屋川市黒原橘町4-1"], ["設立", "2025年"], ["事業内容", "中古自動車の販売／DX支援（AIチャットボット・業務自動化・Web・EC・LP・ホームページ制作）"], ["電話", "072-814-9416（受付 9:00–18:00／日祝休）"]];
+  const profile = [["商号", "ことこと株式会社（Kotokoto Inc.）"], ["所在地", "〒572-0000　大阪府寝屋川市黒原橘町4-1"], ["設立", "2025年"], ["事業内容", "中古自動車の販売／DX支援（AIチャットボット・業務自動化・Web・EC・LP・ホームページ制作）"], ["電話", "072-814-9416"]];
   return React.createElement("div", {
     className: "fade"
   }, React.createElement("section", {
@@ -1934,7 +1942,7 @@ function ContactPage({
       color: "var(--ink-soft)",
       marginTop: 8
     }
-  }, "\u53D7\u4ED8 9:00\u201318:00\uFF08\u65E5\u795D\u4F11\uFF09"), React.createElement("hr", {
+  }, "\u304A\u6C17\u8EFD\u306B\u304A\u554F\u3044\u5408\u308F\u305B\u304F\u3060\u3055\u3044\u3002"), React.createElement("hr", {
     className: "divider",
     style: {
       margin: "22px 0"

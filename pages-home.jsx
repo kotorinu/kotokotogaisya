@@ -8,9 +8,8 @@ function HomePage({ go }) {
           <div>
             <Eyebrow en="KOTOKOTO INC." ja="自動車 × DX" />
             <h1 style={{ marginTop: 24, fontWeight: "600", fontSize: "clamp(38px,4.4vw,60px)" }}>
-              まじめに、<br />
-              　コツコツ。<br />
-              <span className="em">“こと”</span>を、<br /><span className="nowrap">やさしく前へ。</span>
+              <span className="hero-pc">まじめに、<br />　コツコツ。<br /><span className="em">“こと”</span>を、<br /><span className="nowrap">やさしく前へ。</span></span>
+              <span className="hero-sp">まじめにコツコツ。<br /><span className="nowrap"><span className="em">“こと”</span>を、やさしく前へ。</span></span>
             </h1>
             <p className="lead" style={{ maxWidth: "500px", width: "100%" }}>
               ことこと株式会社は、大阪・寝屋川を拠点に

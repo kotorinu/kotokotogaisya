@@ -53,23 +53,28 @@ const Icon = {
 
 /* ---- header ---- */
 function Header({ route, go }) {
+  const [menuOpen, setMenuOpen] = React.useState(false);
   const links = [
   { id: "home", ja: "ホーム", en: "HOME" },
   { id: "cars", ja: "車両情報", en: "VEHICLES" },
   { id: "dx", ja: "DX支援", en: "DX SUPPORT" },
   { id: "company", ja: "会社概要", en: "COMPANY" }];
+  const navTo = (id) => {
+    setMenuOpen(false);
+    go(id);
+  };
 
   return (
     <React.Fragment>
       <div className="topbar">
         <div className="wrap">
           <span className="muted">大阪府寝屋川市黒原橘町4-1</span>
-          <span><b>TEL 072-000-0000</b> <span className="muted">／ 受付 9:00–18:00（日祝休）</span></span>
+          <span><b>TEL 072-814-9416</b> <span className="muted">／ 受付 9:00–18:00（日祝休）</span></span>
         </div>
       </div>
       <header className="site">
         <div className="wrap">
-          <div className="brand" onClick={() => go("home")}>
+          <div className="brand" onClick={() => navTo("home")}>
             <div className="mark"><span>こ</span></div>
             <div>
               <div className="name">ことこと株式会社</div>
@@ -78,19 +83,41 @@ function Header({ route, go }) {
           </div>
           <nav className="main">
             {links.map((l) =>
-            <a key={l.id} className={route.name === l.id ? "active" : ""} onClick={() => go(l.id)}>
+            <a key={l.id} className={route.name === l.id ? "active" : ""} onClick={() => navTo(l.id)}>
                 {l.ja}<span className="en">{l.en}</span>
               </a>
             )}
           </nav>
           <div className="nav-cta">
-            <a className="btn btn--solid" onClick={() => go("contact")}>お問い合わせ<Icon.arrow /></a>
+            <a className="btn btn--solid" onClick={() => navTo("contact")}>お問い合わせ<Icon.arrow /></a>
           </div>
-          <button className="menu-btn" onClick={() => go(route.name === "cars" ? "dx" : "cars")} aria-label="menu">
+          <button className="menu-btn" onClick={() => setMenuOpen(true)} aria-label="メニューを開く" aria-expanded={menuOpen}>
             <svg width="20" height="14" viewBox="0 0 20 14"><path d="M0 1h20M0 7h20M0 13h20" stroke="currentColor" strokeWidth="1.4" /></svg>
           </button>
         </div>
       </header>
+      <div className={"drawer-backdrop" + (menuOpen ? " open" : "")} onClick={() => setMenuOpen(false)}></div>
+      <aside className={"mobile-drawer" + (menuOpen ? " open" : "")} aria-hidden={!menuOpen}>
+        <div className="drawer-head">
+          <div>
+            <div className="name">ことこと株式会社</div>
+            <div className="en">KOTOKOTO INC.</div>
+          </div>
+          <button onClick={() => setMenuOpen(false)} aria-label="メニューを閉じる">×</button>
+        </div>
+        <nav>
+          {links.map((l) =>
+          <a key={l.id} className={route.name === l.id ? "active" : ""} onClick={() => navTo(l.id)}>
+            <span>{l.ja}</span><small>{l.en}</small>
+          </a>
+          )}
+          <a onClick={() => navTo("contact")}><span>お問い合わせ</span><small>CONTACT</small></a>
+        </nav>
+        <div className="drawer-info">
+          <b>TEL 072-814-9416</b>
+          <span>受付 9:00–18:00（日祝休）</span>
+        </div>
+      </aside>
     </React.Fragment>);
 
 }
@@ -146,7 +173,7 @@ function Footer({ go }) {
           <div className="fcol">
             <h4>所在地</h4>
             <a>大阪府寝屋川市<br />黒原橘町4-1</a>
-            <a>TEL 072-000-0000</a>
+            <a>TEL 072-814-9416</a>
           </div>
         </div>
         <div className="legal">

@@ -918,6 +918,7 @@ function Header({
   route,
   go
 }) {
+  const [menuOpen, setMenuOpen] = React.useState(false);
   const links = [{
     id: "home",
     ja: "ホーム",
@@ -935,13 +936,17 @@ function Header({
     ja: "会社概要",
     en: "COMPANY"
   }];
+  const navTo = id => {
+    setMenuOpen(false);
+    go(id);
+  };
   return React.createElement(React.Fragment, null, React.createElement("div", {
     className: "topbar"
   }, React.createElement("div", {
     className: "wrap"
   }, React.createElement("span", {
     className: "muted"
-  }, "\u5927\u962A\u5E9C\u5BDD\u5C4B\u5DDD\u5E02\u9ED2\u539F\u6A58\u753A4-1"), React.createElement("span", null, React.createElement("b", null, "TEL 072-000-0000"), " ", React.createElement("span", {
+  }, "\u5927\u962A\u5E9C\u5BDD\u5C4B\u5DDD\u5E02\u9ED2\u539F\u6A58\u753A4-1"), React.createElement("span", null, React.createElement("b", null, "TEL 072-814-9416"), " ", React.createElement("span", {
     className: "muted"
   }, "\uFF0F \u53D7\u4ED8 9:00\u201318:00\uFF08\u65E5\u795D\u4F11\uFF09")))), React.createElement("header", {
     className: "site"
@@ -949,7 +954,7 @@ function Header({
     className: "wrap"
   }, React.createElement("div", {
     className: "brand",
-    onClick: () => go("home")
+    onClick: () => navTo("home")
   }, React.createElement("div", {
     className: "mark"
   }, React.createElement("span", null, "\u3053")), React.createElement("div", null, React.createElement("div", {
@@ -961,18 +966,19 @@ function Header({
   }, links.map(l => React.createElement("a", {
     key: l.id,
     className: route.name === l.id ? "active" : "",
-    onClick: () => go(l.id)
+    onClick: () => navTo(l.id)
   }, l.ja, React.createElement("span", {
     className: "en"
   }, l.en)))), React.createElement("div", {
     className: "nav-cta"
   }, React.createElement("a", {
     className: "btn btn--solid",
-    onClick: () => go("contact")
+    onClick: () => navTo("contact")
   }, "\u304A\u554F\u3044\u5408\u308F\u305B", React.createElement(Icon.arrow, null))), React.createElement("button", {
     className: "menu-btn",
-    onClick: () => go(route.name === "cars" ? "dx" : "cars"),
-    "aria-label": "menu"
+    onClick: () => setMenuOpen(true),
+    "aria-label": "\u30E1\u30CB\u30E5\u30FC\u3092\u958B\u304F",
+    "aria-expanded": menuOpen
   }, React.createElement("svg", {
     width: "20",
     height: "14",
@@ -981,7 +987,30 @@ function Header({
     d: "M0 1h20M0 7h20M0 13h20",
     stroke: "currentColor",
     strokeWidth: "1.4"
-  }))))));
+  }))))), React.createElement("div", {
+    className: "drawer-backdrop" + (menuOpen ? " open" : ""),
+    onClick: () => setMenuOpen(false)
+  }), React.createElement("aside", {
+    className: "mobile-drawer" + (menuOpen ? " open" : ""),
+    "aria-hidden": !menuOpen
+  }, React.createElement("div", {
+    className: "drawer-head"
+  }, React.createElement("div", null, React.createElement("div", {
+    className: "name"
+  }, "\u3053\u3068\u3053\u3068\u682A\u5F0F\u4F1A\u793E"), React.createElement("div", {
+    className: "en"
+  }, "KOTOKOTO INC.")), React.createElement("button", {
+    onClick: () => setMenuOpen(false),
+    "aria-label": "\u30E1\u30CB\u30E5\u30FC\u3092\u9589\u3058\u308B"
+  }, "\xD7")), React.createElement("nav", null, links.map(l => React.createElement("a", {
+    key: l.id,
+    className: route.name === l.id ? "active" : "",
+    onClick: () => navTo(l.id)
+  }, React.createElement("span", null, l.ja), React.createElement("small", null, l.en))), React.createElement("a", {
+    onClick: () => navTo("contact")
+  }, React.createElement("span", null, "\u304A\u554F\u3044\u5408\u308F\u305B"), React.createElement("small", null, "CONTACT"))), React.createElement("div", {
+    className: "drawer-info"
+  }, React.createElement("b", null, "TEL 072-814-9416"), React.createElement("span", null, "\u53D7\u4ED8 9:00\u201318:00\uFF08\u65E5\u795D\u4F11\uFF09"))));
 }
 function Eyebrow({
   en,
@@ -1052,7 +1081,7 @@ function Footer({
     onClick: () => go("contact")
   }, "\u304A\u554F\u3044\u5408\u308F\u305B")), React.createElement("div", {
     className: "fcol"
-  }, React.createElement("h4", null, "\u6240\u5728\u5730"), React.createElement("a", null, "\u5927\u962A\u5E9C\u5BDD\u5C4B\u5DDD\u5E02", React.createElement("br", null), "\u9ED2\u539F\u6A58\u753A4-1"), React.createElement("a", null, "TEL 072-000-0000"))), React.createElement("div", {
+  }, React.createElement("h4", null, "\u6240\u5728\u5730"), React.createElement("a", null, "\u5927\u962A\u5E9C\u5BDD\u5C4B\u5DDD\u5E02", React.createElement("br", null), "\u9ED2\u539F\u6A58\u753A4-1"), React.createElement("a", null, "TEL 072-814-9416"))), React.createElement("div", {
     className: "legal"
   }, React.createElement("span", null, "\xA9 2025 Kotokoto Inc. All rights reserved."), React.createElement("span", {
     style: {
@@ -1151,9 +1180,9 @@ function HomePage({
     className: "l"
   }, "\u8ECA\u4E21\u8CA9\u58F2\u30FBDX\u652F\u63F4")), React.createElement("div", null, React.createElement("div", {
     className: "n serif"
-  }, "\u5BDD\u5C4B\u5DDD"), React.createElement("div", {
+  }, "\u5168\u56FD"), React.createElement("div", {
     className: "l"
-  }, "\u5927\u962A\u30FB\u5317\u6CB3\u5185\u30A8\u30EA\u30A2")), React.createElement("div", null, React.createElement("div", {
+  }, "DX\u652F\u63F4\u306F\u5168\u56FD\u5BFE\u5FDC")), React.createElement("div", null, React.createElement("div", {
     className: "n serif"
   }, "2025"), React.createElement("div", {
     className: "l"
@@ -1594,7 +1623,7 @@ function DXPage({
     }
   }, "\u201C\u3061\u3087\u3046\u3069\u3044\u3044DX\u201D\u3092\u3001", React.createElement("br", null), "\u7121\u7406\u306E\u306A\u3044\u4E00\u6B69\u304B\u3089\u3002"), React.createElement("p", {
     className: "lead"
-  }, "AI\u3068\u81EA\u52D5\u5316\u3067\u6BCE\u65E5\u306E\u624B\u9593\u3092\u6E1B\u3089\u3057\u3001Web\u5236\u4F5C\u3067\u4F1D\u308F\u308B\u5165\u308A\u53E3\u3092\u3064\u304F\u308B\u3002 \u4E2D\u5C0F\u30FB\u5C0F\u898F\u6A21\u4E8B\u696D\u8005\u306E\u73FE\u5834\u306B\u5408\u308F\u305B\u3066\u3001", React.createElement("b", null, "\u5C0F\u3055\u304F\u59CB\u3081\u3066\u3001\u3066\u3044\u306D\u3044\u306B\u80B2\u3066\u308B"), "DX\u3092\u3054\u652F\u63F4\u3057\u307E\u3059\u3002"), React.createElement("div", {
+  }, "AI\u3068\u81EA\u52D5\u5316\u3067\u6BCE\u65E5\u306E\u624B\u9593\u3092\u6E1B\u3089\u3057\u3001Web\u5236\u4F5C\u3067\u4F1D\u308F\u308B\u5165\u308A\u53E3\u3092\u3064\u304F\u308B\u3002 \u4E2D\u5C0F\u30FB\u5C0F\u898F\u6A21\u4E8B\u696D\u8005\u306E\u73FE\u5834\u306B\u5408\u308F\u305B\u3066\u3001", React.createElement("b", null, "\u5C0F\u3055\u304F\u59CB\u3081\u3066\u3001\u3066\u3044\u306D\u3044\u306B\u80B2\u3066\u308B"), "DX\u3092\u3054\u652F\u63F4\u3057\u307E\u3059\u3002 \u30AA\u30F3\u30E9\u30A4\u30F3\u3067\u5168\u56FD\u5BFE\u5FDC\u304C\u53EF\u80FD\u3067\u3059\u3002"), React.createElement("div", {
     className: "cta-row"
   }, React.createElement("a", {
     className: "btn btn--solid",
@@ -1681,7 +1710,7 @@ window.DXPage = DXPage;
 function CompanyPage({
   go
 }) {
-  const profile = [["商号", "ことこと株式会社（Kotokoto Inc.）"], ["所在地", "〒572-0000　大阪府寝屋川市黒原橘町4-1"], ["設立", "2025年"], ["事業内容", "中古自動車の販売／DX支援（AIチャットボット・業務自動化・Web・EC・LP・ホームページ制作）"], ["電話", "072-000-0000（受付 9:00–18:00／日祝休）"], ["対応エリア", "大阪府寝屋川市・北河内エリアを中心に対応"]];
+  const profile = [["商号", "ことこと株式会社（Kotokoto Inc.）"], ["所在地", "〒572-0000　大阪府寝屋川市黒原橘町4-1"], ["設立", "2025年"], ["事業内容", "中古自動車の販売／DX支援（AIチャットボット・業務自動化・Web・EC・LP・ホームページ制作）"], ["電話", "072-814-9416（受付 9:00–18:00／日祝休）"]];
   return React.createElement("div", {
     className: "fade"
   }, React.createElement("section", {
@@ -1899,7 +1928,7 @@ function ContactPage({
       fontSize: 28,
       color: "var(--accent-ink)"
     }
-  }, "072-000-0000"), React.createElement("p", {
+  }, "072-814-9416"), React.createElement("p", {
     style: {
       fontSize: 12.5,
       color: "var(--ink-soft)",

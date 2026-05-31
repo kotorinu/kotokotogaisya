@@ -13,6 +13,7 @@ function DXPage({ go }) {
             <p className="lead">
               AIと自動化で毎日の手間を減らし、Web制作で伝わる入り口をつくる。
               中小・小規模事業者の現場に合わせて、<b>小さく始めて、ていねいに育てる</b>DXをご支援します。
+              オンラインで全国対応が可能です。
             </p>
             <div className="cta-row">
               <a className="btn btn--solid" onClick={() => go("contact")}>相談してみる<Icon.arrow /></a>

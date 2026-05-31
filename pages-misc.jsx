@@ -5,8 +5,7 @@ function CompanyPage({ go }) {
     ["所在地", "〒572-0000　大阪府寝屋川市黒原橘町4-1"],
     ["設立", "2025年"],
     ["事業内容", "中古自動車の販売／DX支援（AIチャットボット・業務自動化・Web・EC・LP・ホームページ制作）"],
-    ["電話", "072-000-0000（受付 9:00–18:00／日祝休）"],
-    ["対応エリア", "大阪府寝屋川市・北河内エリアを中心に対応"],
+    ["電話", "072-814-9416（受付 9:00–18:00／日祝休）"],
   ];
   return (
     <div className="fade">
@@ -92,7 +91,7 @@ function ContactPage({ go }) {
           <aside>
             <div style={{ border: "1px solid var(--line)", background: "var(--paper)", padding: "28px 26px" }}>
               <h3 style={{ fontSize: 18, marginBottom: 16 }}>お電話でのご相談</h3>
-              <div className="serif" style={{ fontSize: 28, color: "var(--accent-ink)" }}>072-000-0000</div>
+              <div className="serif" style={{ fontSize: 28, color: "var(--accent-ink)" }}>072-814-9416</div>
               <p style={{ fontSize: 12.5, color: "var(--ink-soft)", marginTop: 8 }}>受付 9:00–18:00（日祝休）</p>
               <hr className="divider" style={{ margin: "22px 0" }} />
               <h4 style={{ fontSize: 12, letterSpacing: ".1em", color: "var(--ink-faint)", marginBottom: 10 }}>所在地</h4>

@@ -29,8 +29,8 @@ function HomePage({ go }) {
                 <div className="l">車両販売・DX支援</div>
               </div>
               <div>
-                <div className="n serif">寝屋川</div>
-                <div className="l">大阪・北河内エリア</div>
+                <div className="n serif">全国</div>
+                <div className="l">DX支援は全国対応</div>
               </div>
               <div>
                 <div className="n serif">2025</div>

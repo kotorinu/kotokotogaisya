@@ -93,6 +93,20 @@ nav.main a:hover,nav.main a.active{color:var(--ink);}
 nav.main a.active::after{content:"";position:absolute;left:0;bottom:-2px;width:100%;height:2px;background:var(--accent);}
 .nav-cta{display:flex;align-items:center;gap:18px;}
 .menu-btn{display:none;}
+.drawer-backdrop{position:fixed;inset:0;background:rgba(25,24,22,.38);z-index:80;opacity:0;pointer-events:none;transition:opacity .2s;}
+.drawer-backdrop.open{opacity:1;pointer-events:auto;}
+.mobile-drawer{position:fixed;top:0;right:0;bottom:0;width:min(84vw,340px);background:var(--paper);z-index:90;transform:translateX(100%);transition:transform .24s ease;box-shadow:-20px 0 50px rgba(20,18,16,.16);padding:24px;display:flex;flex-direction:column;}
+.mobile-drawer.open{transform:translateX(0);}
+.drawer-head{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;padding-bottom:20px;border-bottom:1px solid var(--line);}
+.drawer-head .name{font-family:var(--display);font-size:18px;letter-spacing:.06em;}
+.drawer-head .en{font-size:9px;letter-spacing:.28em;color:var(--ink-faint);margin-top:3px;}
+.drawer-head button{width:38px;height:38px;border:1px solid var(--line);font-size:22px;line-height:1;background:var(--paper);}
+.mobile-drawer nav{display:grid;gap:0;margin-top:18px;}
+.mobile-drawer nav a{display:flex;justify-content:space-between;align-items:baseline;padding:18px 0;border-bottom:1px solid var(--line-soft);font-size:16px;font-weight:700;}
+.mobile-drawer nav a small{font-size:10px;letter-spacing:.18em;color:var(--ink-faint);font-weight:700;}
+.mobile-drawer nav a.active{color:var(--accent-ink);}
+.drawer-info{margin-top:auto;border-top:1px solid var(--line);padding-top:18px;display:grid;gap:5px;font-size:13px;color:var(--ink-soft);}
+.drawer-info b{font-size:18px;color:var(--accent-ink);font-family:var(--display);}
 
 /* ---------- hero ---------- */
 .hero{position:relative;overflow:hidden;border-bottom:1px solid var(--line-soft);}
@@ -307,6 +321,7 @@ footer .legal{margin-top:48px;padding-top:24px;border-top:1px solid var(--line-s
   footer.site .top{grid-template-columns:1fr 1fr;}
   nav.main{display:none;}
   .menu-btn{display:grid;place-items:center;width:42px;height:42px;border:1px solid var(--line);}
+  .nav-cta{display:none;}
   .topbar{display:none;}
 }
 @media(max-width:560px){

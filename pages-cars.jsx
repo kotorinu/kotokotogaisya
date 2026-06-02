@@ -1,14 +1,23 @@
 // pages-cars.jsx — vehicle list + detail
 const { useState: useStateC } = React;
 
+const NEW_DAYS = 14;
+function isNewCar(car) {
+  if (!car || car.sold || !car.listedAt) return false;
+  const days = (Date.now() - new Date(car.listedAt).getTime()) / 86400000;
+  return days >= 0 && days <= NEW_DAYS;
+}
+
 function CarCard({ car, go }) {
   const image = Array.isArray(car.images) && car.images.length ? car.images[0] : "";
   return (
-    <div className="car" onClick={() => go("car", { id: car.id })}>
+    <div className={"car" + (car.sold ? " car--sold" : "")} onClick={() => go("car", { id: car.id })}>
       <div className="pic">
         <Ph src={image} label="画像準備中" className={image ? "" : "ph--empty"} style={{ width: "100%", height: "100%" }} alt={`${car.maker} ${car.name}`} />
         <span className="badge">{car.year}年式</span>
+        {isNewCar(car) && <span className="badge badge--new">NEW</span>}
         <span className="heart"><Icon.heart /></span>
+        {car.sold && <div className="sold-overlay"><span>SOLD OUT</span></div>}
       </div>
       <div className="info">
         <div className="mk">{car.maker}</div>
@@ -34,11 +43,17 @@ function CarsPage({ go }) {
   const [filter, setFilter] = useStateC("すべて");
   const [sort, setSort] = useStateC("おすすめ");
 
-  let list = (window.PUBLIC_CARS || CARS).filter((c) => filter === "すべて" || c.body === filter);
+  const allCars = window.PUBLIC_CARS || CARS;
+  // 在庫から実際のボディタイプを集めてフィルタを作る（同期データに追従）
+  const bodyChips = ["すべて", ...Array.from(new Set(allCars.map((c) => c.body).filter(Boolean)))];
+
+  let list = allCars.filter((c) => filter === "すべて" || c.body === filter);
   if (sort === "価格が安い") list = [...list].sort((a, b) => a.price - b.price);
   if (sort === "価格が高い") list = [...list].sort((a, b) => b.price - a.price);
   if (sort === "走行が少ない") list = [...list].sort((a, b) => a.mileage - b.mileage);
   if (sort === "年式が新しい") list = [...list].sort((a, b) => b.year - a.year);
+  // 売却済み（SOLD OUT）は常に末尾へ
+  list = [...list].sort((a, b) => (a.sold ? 1 : 0) - (b.sold ? 1 : 0));
 
   return (
     <div className="fade">
@@ -50,14 +65,14 @@ function CarsPage({ go }) {
         </p>
         <div className="feed-note" style={{ marginTop: 22, marginBottom: 8 }}>
           <span className="dot"></span>
-          カーセンサー／グーネット連携で在庫を自動更新（※デモ画面ではサンプル車両を表示）
+          在庫は毎日更新しています。新着は「NEW」、ご成約車は「SOLD OUT」で表示しています。
         </div>
       </section>
 
       <section className="section wrap" style={{ paddingTop: 40 }}>
         <div className="toolbar">
           <div className="chips">
-            {BODY_TYPES.map((b) => (
+            {bodyChips.map((b) => (
               <button key={b} className={"chip" + (filter === b ? " on" : "")} onClick={() => setFilter(b)}>{b}</button>
             ))}
           </div>
@@ -145,6 +160,8 @@ function CarDetail({ go, id }) {
             <div className="mk">{car.maker}</div>
             <h1>{car.name}</h1>
             <div className="grade">{car.grade}</div>
+            {car.sold && <div className="sold-flag">SOLD OUT ／ 商談・成約済み</div>}
+            {isNewCar(car) && <div className="new-flag">NEW ／ 新着車両</div>}
             <div className="tags">
               {car.tags.map((t) => <span key={t}>{t}</span>)}
             </div>
@@ -163,7 +180,9 @@ function CarDetail({ go, id }) {
               </tbody>
             </table>
             <div className="dcta">
-              <a className="btn btn--solid" style={{ flex: 1, justifyContent: "center" }} onClick={() => go("contact")}>この車両を問い合わせる<Icon.arrow /></a>
+              <a className="btn btn--solid" style={{ flex: 1, justifyContent: "center" }} onClick={() => go("contact")}>
+                {car.sold ? "似た車両を相談する" : "この車両を問い合わせる"}<Icon.arrow />
+              </a>
             </div>
             <a className="btn btn--ghost" style={{ marginTop: 12, width: "100%", justifyContent: "center" }} onClick={() => go("cars")}>‹ 一覧に戻る</a>
           </div>

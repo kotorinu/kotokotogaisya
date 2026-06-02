@@ -3,8 +3,57 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>ことこと株式会社</title>
-<link rel="icon" href="data:," />
+
+<!-- 公開ドメイン: kotoko-gaisya.com（SSL/https 対応後は http→https に統一推奨） -->
+<title>ことこと株式会社｜大阪・寝屋川の中古車販売とDX支援</title>
+<meta name="description" content="ことこと株式会社は、大阪・寝屋川を拠点に、状態の良い厳選中古車の販売と、中小企業向けのDX支援（AIチャットボット・業務自動化・Web/EC・LP・ホームページ制作）を行っています。在庫は毎日更新。試乗・現車確認も歓迎です。" />
+<meta name="keywords" content="中古車,中古車販売,寝屋川,大阪,DX支援,AIチャットボット,業務自動化,ホームページ制作,Web制作,ことこと株式会社" />
+<meta name="robots" content="index,follow" />
+<meta name="theme-color" content="#2b3f5c" />
+<meta name="format-detection" content="telephone=no" />
+<link rel="canonical" href="http://kotoko-gaisya.com/" />
+<link rel="icon" type="image/svg+xml" href="favicon.svg" />
+<link rel="apple-touch-icon" href="favicon.svg" />
+
+<!-- Open Graph / Twitter -->
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="ことこと株式会社" />
+<meta property="og:title" content="ことこと株式会社｜大阪・寝屋川の中古車販売とDX支援" />
+<meta property="og:description" content="状態の良い厳選中古車の販売と、中小企業向けのDX支援。大阪・寝屋川。在庫は毎日更新。" />
+<meta property="og:url" content="http://kotoko-gaisya.com/" />
+<meta property="og:image" content="http://kotoko-gaisya.com/assets/images/hero-office-dx-subtle-car.jpg" />
+<meta property="og:locale" content="ja_JP" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="ことこと株式会社｜大阪・寝屋川の中古車販売とDX支援" />
+<meta name="twitter:description" content="状態の良い厳選中古車の販売と、中小企業向けのDX支援。大阪・寝屋川。在庫は毎日更新。" />
+<meta name="twitter:image" content="http://kotoko-gaisya.com/assets/images/hero-office-dx-subtle-car.jpg" />
+
+<link rel="preconnect" href="https://ccsrpcma.carsensor.net" crossorigin />
+
+<!-- 構造化データ（中古車販売店） -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "AutoDealer",
+  "name": "ことこと株式会社",
+  "alternateName": "Kotokoto Inc.",
+  "url": "http://kotoko-gaisya.com/",
+  "image": "http://kotoko-gaisya.com/assets/images/hero-office-dx-subtle-car.jpg",
+  "telephone": "+81-72-814-9416",
+  "foundingDate": "2025",
+  "description": "大阪・寝屋川を拠点に、厳選中古車の販売と中小企業向けのDX支援を行う会社です。",
+  "address": {
+    "@type": "PostalAddress",
+    "postalCode": "572-0000",
+    "addressRegion": "大阪府",
+    "addressLocality": "寝屋川市",
+    "streetAddress": "黒原橘町4-1",
+    "addressCountry": "JP"
+  },
+  "areaServed": "JP",
+  "knowsAbout": ["中古車販売", "DX支援", "AIチャットボット", "業務自動化", "Web制作", "EC制作", "LP制作", "ホームページ制作"]
+}
+</script>
 <style>
 :root{
   --bg:        oklch(0.985 0.004 95);
@@ -180,6 +229,13 @@ nav.main a.active::after{content:"";position:absolute;left:0;bottom:-2px;width:1
 .car:hover{transform:translateY(-4px);box-shadow:var(--shadow);border-color:transparent;}
 .car .pic{aspect-ratio:4/3;position:relative;}
 .car .pic .badge{position:absolute;top:12px;left:12px;background:var(--ink);color:#fff;font-size:10.5px;letter-spacing:.08em;padding:4px 9px;font-weight:500;}
+.car .pic .badge--new{top:38px;left:12px;background:var(--accent);color:#fff;font-weight:700;letter-spacing:.12em;}
+.car .pic .sold-overlay{position:absolute;inset:0;background:rgba(22,20,18,.46);display:grid;place-items:center;z-index:2;}
+.car .pic .sold-overlay span{background:#b3261e;color:#fff;font-weight:700;letter-spacing:.14em;font-size:15px;padding:8px 20px;border:2px solid #fff;transform:rotate(-6deg);box-shadow:0 6px 18px -8px rgba(0,0,0,.5);}
+.car--sold{opacity:.96;}
+.car--sold .price .n{color:var(--ink-faint);}
+.sold-flag{display:inline-block;background:#b3261e;color:#fff;font-weight:700;letter-spacing:.08em;font-size:13px;padding:7px 14px;margin-top:14px;}
+.new-flag{display:inline-block;background:var(--accent);color:#fff;font-weight:700;letter-spacing:.1em;font-size:12px;padding:6px 13px;margin-top:14px;}
 .car .pic .heart{position:absolute;top:10px;right:10px;width:30px;height:30px;background:rgba(255,255,255,.92);border-radius:999px;display:grid;place-items:center;color:var(--ink-faint);}
 .car .info{padding:18px 20px 20px;display:flex;flex-direction:column;flex:1;}
 .car .mk{font-size:11.5px;letter-spacing:.1em;color:var(--ink-faint);font-weight:500;}
@@ -341,8 +397,18 @@ footer .legal{margin-top:48px;padding-top:24px;border-top:1px solid var(--line-s
 <body>
 <div id="root"></div>
 
-<script src="vendor/react.development.js"></script>
-<script src="vendor/react-dom.development.js"></script>
-<script src="site.js"></script>
+<noscript>
+  <div style="max-width:760px;margin:0 auto;padding:48px 24px;font-family:'Yu Gothic','Meiryo',sans-serif;line-height:1.9;color:#2b2722;">
+    <h1 style="font-family:'Yu Mincho','Hiragino Mincho ProN',serif;font-size:28px;">ことこと株式会社</h1>
+    <p>大阪・寝屋川を拠点に、状態の良い厳選中古車の販売と、中小企業向けのDX支援（AIチャットボット・業務自動化・Web/EC・LP・ホームページ制作）を行っています。在庫は毎日更新しています。</p>
+    <p>〒572-0000　大阪府寝屋川市黒原橘町4-1<br />お電話：<a href="tel:0728149416">072-814-9416</a></p>
+    <p>※このサイトの車両一覧をご覧いただくには JavaScript を有効にしてください。お電話でもお気軽にお問い合わせください。</p>
+  </div>
+</noscript>
+
+<!-- ?v= はキャッシュ対策。site.js を更新したら数字を1つ増やしてください -->
+<script defer src="vendor/react.production.min.js"></script>
+<script defer src="vendor/react-dom.production.min.js"></script>
+<script defer src="site.js?v=2"></script>
 </body>
 </html>

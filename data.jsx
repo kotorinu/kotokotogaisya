@@ -1,5 +1,7 @@
-// data.jsx — mock content for the Kotokoto integrated corporate site.
-// Replace CARS with a real Carsensor / Goo-net feed later; photos are placeholders.
+// data.jsx — content for the Kotokoto integrated corporate site.
+// 本番の車両データは data/cars.json（在庫管理データから自動更新）。
+// 下記 CARS は file:// で開いたときのフォールバック用サンプル。
+// 車両一覧のフィルタは cars.json の body 値から動的生成されます（BODY_TYPES は予備）。
 
 const CARS = [
   {
@@ -133,15 +135,15 @@ const WORKS = [
 ];
 
 const SITE_ASSETS = {
-  hero: "assets/images/hero-office-dx-subtle-car.png",
-  businessVehicles: "assets/images/business-vehicles.png",
-  businessDx: "assets/images/business-dx.png",
-  dxHero: "assets/images/business-dx.png",
-  workAutomation: "assets/images/work-automation.png",
-  workHomepage: "assets/images/work-homepage.png",
-  workInventory: "assets/images/work-inventory.png",
-  workChatbot: "assets/images/work-chatbot.png",
-  company: "assets/images/business-vehicles.png",
+  hero: "assets/images/hero-office-dx-subtle-car.webp",
+  businessVehicles: "assets/images/business-vehicles.webp",
+  businessDx: "assets/images/business-dx.webp",
+  dxHero: "assets/images/business-dx.webp",
+  workAutomation: "assets/images/work-automation.webp",
+  workHomepage: "assets/images/work-homepage.webp",
+  workInventory: "assets/images/work-inventory.webp",
+  workChatbot: "assets/images/work-chatbot.webp",
+  company: "assets/images/business-vehicles.webp",
 };
 
 Object.assign(window, { CARS, BODY_TYPES, SERVICES, STEPS, WORKS, SITE_ASSETS });

@@ -106,7 +106,7 @@ function HomePage({ go }) {
         </div>
         <div className="feed-note">
           <span className="dot"></span>
-          在庫情報はカーセンサー／グーネット連携で随時更新されます（※デモ画面ではサンプルを表示しています）
+          在庫は毎日更新しています。気になるお車はお気軽にお問い合わせください。
         </div>
       </section>
 

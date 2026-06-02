@@ -32,6 +32,19 @@ https://example.com/admin/
 4. `cgi/admin.cgi` のパーミッションをサーバー指定値に合わせます。
 5. `data/cars.json` と `assets/cars/` はCGIから書き込み可能にします。
 
+## カーセンサー在庫の自動同期
+
+カーセンサーの自社店舗在庫を1日1回読み取り、`data/cars.json` を自動更新します（新着は「NEW」、ご成約車は「SOLD OUT」表示、写真も取り込み）。仕組み・セットアップ・ローカル確認方法は [`docs/carsensor-sync.md`](docs/carsensor-sync.md) を参照してください。
+
+ローカルで差分だけ確認する場合:
+
+```bash
+npm install
+npm run sync:dry
+```
+
 ## GitHub運用
 
 GitHubはコード管理用です。管理画面から本番サーバー上で追加された車両写真や `data/cars.json` は運用データなので、必要に応じてFTPでバックアップしてください。
+
+カーセンサー同期は GitHub Actions（`.github/workflows/sync-carsensor.yml`）で毎日自動実行され、更新後の `data/cars.json` がリポジトリにもコミットされます。

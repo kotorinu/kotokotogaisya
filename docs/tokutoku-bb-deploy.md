@@ -9,22 +9,20 @@
 
 ## アップロードするもの
 
+ブラウザが読み込むのは `index.html` / `site.js` / `vendor/`（本番版React）/ `data/` / `assets/` だけです。`*.jsx` はソースで、`site.js` にビルド済みなので**アップロード不要**です（手元で `node scripts/build-site.js` を実行して `site.js` を更新してからアップロードします）。
+
 公開ディレクトリ:
 
 ```text
 index.html
-app.jsx
-data.jsx
-ui.jsx
-pages-home.jsx
-pages-cars.jsx
-pages-dx.jsx
-pages-misc.jsx
-tweaks-panel.jsx
+site.js
+favicon.svg
+robots.txt
+sitemap.xml
 data/
 assets/
 admin/
-vendor/
+vendor/            # react.production.min.js / react-dom.production.min.js のみ
 ```
 
 CGIディレクトリ:
@@ -35,13 +33,24 @@ cgi/admin.cgi
 
 ## 公開前に変更するもの
 
-`cgi/admin.cgi`:
+1. `cgi/admin.cgi` の管理キー:
 
 ```perl
 my $ADMIN_KEY = 'change-this-admin-key';
 ```
 
 この値を推測されにくい文字列へ変更してください。
+
+2. **ドメインの置き換え**: `index.html` のSEOタグ（canonical / og:url / og:image）、`robots.txt`、`sitemap.xml` 内の `https://www.example.com/` を、実際の公開ドメインに置き換えてください。
+
+## ビルド（公開前に毎回）
+
+```bash
+npm install            # 初回のみ
+node scripts/build-site.js   # *.jsx → site.js（圧縮済み）を生成
+```
+
+`vendor/` には本番版の React（`react.production.min.js` / `react-dom.production.min.js`）のみを置きます。開発用の `*.development.js` や `babel.min.js` は不要です（ビルドは esbuild が行います）。
 
 ## 管理画面の使い方
 

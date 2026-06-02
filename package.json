@@ -1,0 +1,19 @@
+{
+  "name": "kotokoto-company-site",
+  "version": "1.0.0",
+  "private": true,
+  "description": "ことこと株式会社HP（静的サイト＋カーセンサー在庫自動同期）",
+  "scripts": {
+    "build": "node scripts/build-site.js",
+    "dev": "node scripts/dev-server.js",
+    "sync": "node scripts/sync-carsensor.js",
+    "sync:dry": "node scripts/sync-carsensor.js --dry"
+  },
+  "dependencies": {
+    "cheerio": "^1.2.0"
+  },
+  "devDependencies": {
+    "esbuild": "^0.28.0",
+    "sharp": "^0.34.5"
+  }
+}

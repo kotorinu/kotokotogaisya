@@ -82,6 +82,26 @@ function DXPage({ go }) {
         </div>
       </section>
 
+      {/* 伴走支援 */}
+      <section className="section--tight wrap">
+        <SHead en="PARTNERSHIP" ja="伴走支援" title="つくって終わり、にしません"
+          lead="導入したAIや仕組みは、使われてこそ価値になります。御社に合ったAIの活用方法やDXの進め方を、公開・導入のあとも一緒に考え、改善し続けます。" />
+        <div className="values">
+          <div className="value">
+            <h3>あなた専用の使い方</h3>
+            <p>業種・体制・お困りごとに合わせて、御社にちょうどいいAI活用とDXの形を一緒に設計します。</p>
+          </div>
+          <div className="value">
+            <h3>運用しながら改善</h3>
+            <p>導入して終わりではなく、数字と現場の声を見ながら、無理のないペースで育てていきます。</p>
+          </div>
+          <div className="value">
+            <h3>気軽に相談できる距離</h3>
+            <p>「これってできる？」の一言から。専門用語ぬきで、伴走者としてやさしくお応えします。</p>
+          </div>
+        </div>
+      </section>
+
       <Band go={go} />
     </div>
   );

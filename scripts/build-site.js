@@ -1,10 +1,11 @@
 const fs = require("fs");
 const path = require("path");
-const Babel = require("../vendor/babel.min.js");
+const esbuild = require("esbuild");
 
 const root = path.resolve(__dirname, "..");
+
+// 本番バンドルに含めるソース（設計用の tweaks-panel.jsx は除外＝デッドコード）
 const files = [
-  "tweaks-panel.jsx",
   "data.jsx",
   "ui.jsx",
   "pages-home.jsx",
@@ -18,11 +19,15 @@ const source = files
   .map((file) => `\n/* ${file} */\n` + fs.readFileSync(path.join(root, file), "utf8"))
   .join("\n");
 
-const output = Babel.transform(source, {
-  presets: ["react"],
-  sourceType: "script",
-  comments: false,
-}).code;
+// esbuild で JSX 変換＋圧縮を一括（Babel 不要、出力を最小化）
+const result = esbuild.transformSync(source, {
+  loader: "jsx",
+  jsx: "transform",
+  minify: true,
+  legalComments: "none",
+  charset: "utf8",
+});
 
-fs.writeFileSync(path.join(root, "site.js"), output, "utf8");
-console.log("built site.js");
+fs.writeFileSync(path.join(root, "site.js"), result.code, "utf8");
+const kb = (fs.statSync(path.join(root, "site.js")).size / 1024).toFixed(1);
+console.log(`built site.js (${kb} KB, minified)`);

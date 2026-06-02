@@ -1,0 +1,58 @@
+name: カーセンサー在庫同期
+
+# 1日1回（JST 朝9時頃 = UTC 0:00）＋手動実行
+on:
+  schedule:
+    - cron: "0 0 * * *"
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "保存せず差分だけ確認（true/false）"
+        required: false
+        default: "false"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: carsensor-sync
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: チェックアウト
+        uses: actions/checkout@v4
+
+      - name: Node.js セットアップ
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: 依存インストール
+        run: npm install --no-audit --no-fund
+
+      - name: 同期実行
+        env:
+          CARSENSOR_SHOP_URL: ${{ vars.CARSENSOR_SHOP_URL }}
+          KOTOKOTO_CGI_URL: ${{ secrets.KOTOKOTO_CGI_URL }}
+          KOTOKOTO_DATA_URL: ${{ secrets.KOTOKOTO_DATA_URL }}
+          KOTOKOTO_ADMIN_KEY: ${{ secrets.KOTOKOTO_ADMIN_KEY }}
+          MAX_CARS: "20"
+          NEW_DAYS: "14"
+          DRY_RUN: ${{ github.event.inputs.dry_run == 'true' && '1' || '' }}
+        run: npm run sync
+
+      - name: cars.json の変更をコミット（バックアップ）
+        if: ${{ github.event.inputs.dry_run != 'true' }}
+        run: |
+          git config user.name "carsensor-sync-bot"
+          git config user.email "actions@users.noreply.github.com"
+          if ! git diff --quiet -- data/cars.json; then
+            git add data/cars.json
+            git commit -m "chore: カーセンサー在庫を同期 ($(date -u +%Y-%m-%d))"
+            git push
+          else
+            echo "変更なし"
+          fi

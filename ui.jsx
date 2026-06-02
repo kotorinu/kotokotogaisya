@@ -6,7 +6,7 @@ function Ph({ label, dark, className = "", style, src, alt }) {
   if (src) {
     return (
       <figure className={"ph ph--image " + className} style={style}>
-        <img src={src} alt={alt || label || ""} loading="lazy" />
+        <img src={src} alt={alt || label || ""} loading="lazy" decoding="async" />
       </figure>
     );
   }

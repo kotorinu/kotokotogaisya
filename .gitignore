@@ -7,3 +7,4 @@ dist/
 tmp/
 tmp_*
 tmp_cars_preview.json
+.claude/

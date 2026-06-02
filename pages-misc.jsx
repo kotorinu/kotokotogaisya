@@ -47,6 +47,36 @@ function CompanyPage({ go }) {
 function ContactPage({ go }) {
   const [type, setType] = React.useState("車両について");
   const [sent, setSent] = React.useState(false);
+  const [sending, setSending] = React.useState(false);
+  const [error, setError] = React.useState("");
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    const f = e.target;
+    const payload = {
+      type,
+      name:    f.querySelector('[name=name]').value.trim(),
+      company: f.querySelector('[name=company]').value.trim(),
+      email:   f.querySelector('[name=email]').value.trim(),
+      phone:   f.querySelector('[name=phone]').value.trim(),
+      message: f.querySelector('[name=message]').value.trim(),
+    };
+
+    const url = (typeof CONTACT_FORM_URL !== "undefined") ? CONTACT_FORM_URL : "";
+    if (!url) {
+      // URL未設定のときは画面だけ切り替え（開発用フォールバック）
+      setSent(true);
+      window.scrollTo(0, 0);
+      return;
+    }
+
+    setSending(true);
+    setError("");
+    fetch(url, { method: "POST", body: JSON.stringify(payload) })
+      .then(() => { setSent(true); window.scrollTo(0, 0); })
+      .catch(() => setError("送信に失敗しました。お手数ですがお電話にてご連絡ください。"))
+      .finally(() => setSending(false));
+  }
 
   return (
     <div className="fade">
@@ -68,7 +98,7 @@ function ContactPage({ go }) {
               <a className="btn btn--ghost" style={{ marginTop: 26 }} onClick={() => go("home")}>ホームに戻る</a>
             </div>
           ) : (
-            <form onSubmit={(e) => { e.preventDefault(); setSent(true); window.scrollTo(0, 0); }}>
+            <form onSubmit={handleSubmit}>
               <div className="formgrid">
                 <div className="field full">
                   <label>お問い合わせ種別</label>
@@ -78,13 +108,16 @@ function ContactPage({ go }) {
                     ))}
                   </div>
                 </div>
-                <div className="field"><label>お名前 <span className="req">必須</span></label><input required placeholder="山田 太郎" /></div>
-                <div className="field"><label>会社名</label><input placeholder="株式会社〇〇" /></div>
-                <div className="field"><label>メールアドレス <span className="req">必須</span></label><input type="email" required placeholder="example@mail.com" /></div>
-                <div className="field"><label>電話番号</label><input placeholder="090-0000-0000" /></div>
-                <div className="field full"><label>お問い合わせ内容 <span className="req">必須</span></label><textarea required placeholder="ご相談内容をご記入ください。"></textarea></div>
+                <div className="field"><label>お名前 <span className="req">必須</span></label><input name="name" required placeholder="山田 太郎" /></div>
+                <div className="field"><label>会社名</label><input name="company" placeholder="株式会社〇〇" /></div>
+                <div className="field"><label>メールアドレス <span className="req">必須</span></label><input name="email" type="email" required placeholder="example@mail.com" /></div>
+                <div className="field"><label>電話番号</label><input name="phone" placeholder="090-0000-0000" /></div>
+                <div className="field full"><label>お問い合わせ内容 <span className="req">必須</span></label><textarea name="message" required placeholder="ご相談内容をご記入ください。"></textarea></div>
               </div>
-              <button type="submit" className="btn btn--solid" style={{ marginTop: 24 }}>送信する<Icon.arrow /></button>
+              {error && <p style={{ color: "#b3261e", fontSize: 13, marginTop: 12 }}>{error}</p>}
+              <button type="submit" className="btn btn--solid" style={{ marginTop: 24 }} disabled={sending}>
+                {sending ? "送信中…" : <span>送信する<Icon.arrow /></span>}
+              </button>
             </form>
           )}
 

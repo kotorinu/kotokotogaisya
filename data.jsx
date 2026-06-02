@@ -3,6 +3,10 @@
 // 下記 CARS は file:// で開いたときのフォールバック用サンプル。
 // 車両一覧のフィルタは cars.json の body 値から動的生成されます（BODY_TYPES は予備）。
 
+// ▼ お問い合わせフォームの送信先（Apps Script のデプロイURL）
+// デプロイ後に実際のURLに変更してください
+const CONTACT_FORM_URL = "https://script.google.com/macros/s/AKfycbwMZAzhKaEFtEkbvoIKNQFMsfOpJn5n11EgGqf6sDqQItv9mOTQuFA9gAibEqgf71s8GA/exec";
+
 const CARS = [
   {
     id: "nx300h",

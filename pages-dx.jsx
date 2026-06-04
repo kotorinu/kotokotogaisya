@@ -8,12 +8,12 @@ function DXPage({ go }) {
           <div>
             <Eyebrow en="DX SUPPORT" ja="DX支援" />
             <h1 style={{ marginTop: 24, fontSize: "clamp(32px,4vw,52px)" }}>
-              “ちょうどいいDX”を、<br />無理のない一歩から。
+              AI活用・業務効率化を、<br />無理のない一歩から。
             </h1>
             <p className="lead">
-              AIと自動化で毎日の手間を減らし、Web制作で伝わる入り口をつくる。
-              中小・小規模事業者の現場に合わせて、<b>小さく始めて、ていねいに育てる</b>DXをご支援します。
-              オンラインで全国対応が可能です。
+              AIチャットボット導入・業務自動化・業務効率化・ホームページ制作まで。
+              中小・小規模事業者の現場に合わせた<b>AIコンサル・DX支援</b>を、
+              大阪から全国対応でご提供します。<b>小さく始めて、ていねいに育てる</b>が私たちのスタイルです。
             </p>
             <div className="cta-row">
               <a className="btn btn--solid" onClick={() => go("contact")}>相談してみる<Icon.arrow /></a>

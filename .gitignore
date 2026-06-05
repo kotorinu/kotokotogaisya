@@ -3,6 +3,7 @@ Thumbs.db
 *.log
 node_modules/
 .cache/
+.vercel/
 dist/
 tmp/
 tmp_*

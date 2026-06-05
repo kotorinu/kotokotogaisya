@@ -41,6 +41,7 @@ const CGI_URL = process.env.KOTOKOTO_CGI_URL || "";
 const DATA_URL = process.env.KOTOKOTO_DATA_URL || "";
 const ADMIN_KEY = process.env.KOTOKOTO_ADMIN_KEY || "";
 const MAX_CARS = Number(process.env.MAX_CARS || 20);
+const MAX_PHOTOS = Number(process.env.MAX_PHOTOS || 30);
 const NEW_DAYS = Number(process.env.NEW_DAYS || 14);
 const REPLACE_SAMPLE = process.env.REPLACE_SAMPLE === "1";
 const WRITE_LOCAL = process.env.WRITE_LOCAL === "1";
@@ -129,6 +130,41 @@ function toLargePhoto(url) {
   u = u.split("?")[0];
   u = u.replace(/_(\d{3})[MS]\.JPG$/i, "_$1L.JPG");
   return u;
+}
+
+function normalizePhotoUrl(url) {
+  if (!url) return "";
+  let u = String(url).trim();
+  if (!u) return "";
+  if (u.startsWith("//")) u = "https:" + u;
+  if (u.startsWith("https://ccsrpcma.carsensor.nethttps://")) {
+    u = u.replace("https://ccsrpcma.carsensor.net", "");
+  }
+  return u.replace(/&amp;/g, "&").split("?")[0];
+}
+
+function extractDetailPhotos(html, mainPhoto) {
+  const seen = new Set();
+  const photos = [];
+  const add = (url) => {
+    const normalized = normalizePhotoUrl(url);
+    if (!normalized || seen.has(normalized)) return;
+    if (!/ccsrpcm[al]\.carsensor\.net\/CSphoto\//i.test(normalized)) return;
+    if (/\/nophoto_/i.test(normalized)) return;
+    seen.add(normalized);
+    photos.push(normalized);
+  };
+
+  add(mainPhoto);
+
+  const re = /https?:\/\/ccsrpcm[al]\.carsensor\.net\/CSphoto\/[^"'\\\s<>]+/gi;
+  let m;
+  while ((m = re.exec(html)) && photos.length < MAX_PHOTOS) {
+    const url = m[0];
+    if (/\/CSphoto\/ml\//i.test(url) && !/\/S[AU]\d/i.test(url)) add(url);
+  }
+
+  return photos.slice(0, MAX_PHOTOS);
 }
 
 function pricePair(main, sub) {
@@ -242,8 +278,9 @@ function parseDetail(html) {
     $("#js-mainPhoto").attr("src") ||
     "";
   photo = toLargePhoto(photo);
+  const photos = extractDetailPhotos(html, photo);
 
-  return { fuel, seats, color, features, photo, body: table["ボディタイプ"] || "" };
+  return { fuel, seats, color, features, photo, photos, body: table["ボディタイプ"] || "" };
 }
 
 /* ---------- photo gallery ---------- */
@@ -344,7 +381,9 @@ function buildCar(scr, detail, prev) {
     tags: prev?.tags?.length ? prev.tags : buildTags({ ...scr, body }, detail),
     features: detail.features.length ? detail.features : prev?.features || [],
     note: prev?.note || "",
-    images: Array.isArray(prev?.images) ? prev.images : [],
+    images: [],
+    carsensorMainPhoto: prev?.carsensorMainPhoto || "",
+    carsensorPhotoSources: Array.isArray(prev?.carsensorPhotoSources) ? prev.carsensorPhotoSources : [],
     listedAt: prev?.listedAt || now(),
     syncedAt: now(),
     soldAt: null,
@@ -379,7 +418,7 @@ async function main() {
       details[car.csId] = parseDetail(dHtml);
     } catch (e) {
       log("! 詳細取得失敗", car.csId, e.message);
-      details[car.csId] = { fuel: "", seats: 0, color: "", features: [], photo: "", body: "" };
+      details[car.csId] = { fuel: "", seats: 0, color: "", features: [], photo: "", photos: [], body: "" };
     }
     await sleep(800); // 控えめに
   }
@@ -404,9 +443,10 @@ async function main() {
     const detail = details[scr.csId];
     const car = buildCar(scr, detail, prev);
 
-    // 画像: 既存があれば保持。無ければ全枚数を取り込み
-    if (!car.images.length && (detail.photo || scr.photo)) {
-      const gallery = await collectPhotos(detail.photo || scr.photo);
+    const gallery = (Array.isArray(detail.photos) && detail.photos.length)
+      ? detail.photos
+      : (detail.photo || scr.photo ? await collectPhotos(detail.photo || scr.photo) : []);
+    if (gallery.length) {
       if (DRY_RUN) {
         car.images = gallery; // dryではホットリンクでプレビュー
       } else {
@@ -417,6 +457,8 @@ async function main() {
           car.images = gallery;
         }
       }
+      car.carsensorMainPhoto = gallery[0] || detail.photo || scr.photo;
+      car.carsensorPhotoSources = gallery;
       log(`  ${car.id}: 画像 ${car.images.length} 枚`);
     }
 

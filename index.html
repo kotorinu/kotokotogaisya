@@ -125,7 +125,7 @@ h1,h2,h3{font-family:var(--display);font-weight:600;line-height:1.32;letter-spac
 .measure{max-width:62ch;}
 
 /* ---------- layout ---------- */
-.wrap{max-width:var(--maxw);margin:0 auto;padding:0 clamp(24px,5vw,56px);}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 clamp(28px,6.5vw,64px);}
 .section{padding:var(--sec-pad,104px) 0;}
 .section--tight{padding:72px 0;}
 .center{text-align:center;}
@@ -231,7 +231,10 @@ nav.main a.active::after{content:"";position:absolute;left:0;bottom:-2px;width:1
 
 /* ---------- value / stance ---------- */
 .values{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid var(--line);background:var(--paper);}
-.value{padding:42px 34px;border-right:1px solid var(--line);}
+.value{padding:42px 34px;border-right:1px solid var(--line);transition:transform .22s ease,background .22s ease;}
+.value:hover{transform:translateY(-3px);background:var(--paper);}
+.value .ic{transition:transform .22s ease;}
+.value:hover .ic{transform:scale(1.08) translateY(-2px);}
 .value:last-child{border-right:0;}
 .value .ic{width:34px;height:34px;color:var(--accent);}
 .value h3{font-size:20px;margin-top:20px;}
@@ -381,6 +384,8 @@ footer .legal{margin-top:48px;padding-top:24px;border-top:1px solid var(--line-s
 /* ---------- responsive ---------- */
 @media(max-width:920px){
   .hero .wrap{grid-template-columns:1fr;gap:36px;}
+  .hero h1{font-size:clamp(40px,6.6vw,58px);line-height:1.32;}
+  .hero .lead{max-width:none;}
   .hero-visual{aspect-ratio:16/11;}
   .biz-grid,.cars,.works,.steps,.values{grid-template-columns:1fr;}
   .value{border-right:0;border-bottom:1px solid var(--line);}

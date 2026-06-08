@@ -7,8 +7,9 @@ function DXPage({ go }) {
         <div className="wrap" style={{ gridTemplateColumns: "1.05fr .95fr" }}>
           <div>
             <Eyebrow en="DX SUPPORT" ja="DX支援" />
-            <h1 style={{ marginTop: 24, fontSize: "clamp(32px,4vw,52px)" }}>
-              AI活用・業務効率化を、<br />無理のない一歩から。
+            <h1 style={{ marginTop: 24, fontSize: "clamp(30px,3.4vw,46px)", lineHeight: 1.4 }}>
+              <span style={{ whiteSpace: "nowrap" }}>AI活用・業務効率化を、</span><br />
+              <span style={{ whiteSpace: "nowrap" }}>無理のない一歩から。</span>
             </h1>
             <p className="lead">
               AIチャットボット導入・業務自動化・業務効率化・ホームページ制作まで。

@@ -59,3 +59,17 @@ jobs:
           else
             echo "変更なし"
           fi
+
+      - name: とくとくBB(公式ドメイン)へ cars.json をFTPアップロード
+        if: ${{ github.event.inputs.dry_run != 'true' }}
+        env:
+          BB_FTP_HOST: ${{ secrets.BB_FTP_HOST }}
+          BB_FTP_USER: ${{ secrets.BB_FTP_USER }}
+          BB_FTP_PASS: ${{ secrets.BB_FTP_PASS }}
+        run: |
+          if [ -n "$BB_FTP_HOST" ] && [ -n "$BB_FTP_USER" ] && [ -n "$BB_FTP_PASS" ]; then
+            curl -sS --fail --user "$BB_FTP_USER:$BB_FTP_PASS" -T data/cars.json "ftp://$BB_FTP_HOST/data/cars.json"
+            echo "とくとくBBへ cars.json をアップロードしました"
+          else
+            echo "BB FTP secrets 未設定のためスキップ（BB_FTP_HOST/USER/PASS）"
+          fi

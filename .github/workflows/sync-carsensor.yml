@@ -36,13 +36,11 @@ jobs:
       - name: 同期実行
         env:
           CARSENSOR_SHOP_URL: ${{ vars.CARSENSOR_SHOP_URL }}
-          KOTOKOTO_CGI_URL: ${{ secrets.KOTOKOTO_CGI_URL }}
-          KOTOKOTO_DATA_URL: ${{ secrets.KOTOKOTO_DATA_URL }}
-          KOTOKOTO_ADMIN_KEY: ${{ secrets.KOTOKOTO_ADMIN_KEY }}
           MAX_CARS: "20"
           NEW_DAYS: "14"
-          # CGI(とくとくBB)が無くても公開ページ取得だけで data/cars.json を更新・コミットする
-          # （Vercelはカーセンサー画像の直リンク方式で動くため再ホスト不要）
+          # CGI(旧とくとくBB方式)は使わず、公開ページ取得だけで data/cars.json を生成。
+          # CGI系の環境変数を渡さない → スクリプトは自動でローカル書き出しモードになる。
+          # 反映は後段の「コミット」と「FTPアップロード」で行う（画像はカーセンサー直リンク）。
           WRITE_LOCAL: "1"
           DRY_RUN: ${{ github.event.inputs.dry_run == 'true' && '1' || '' }}
         run: npm run sync

@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: http://kotoko-gaisya.com/sitemap.xml
+Sitemap: https://kotokoto-gaisya.com/sitemap.xml

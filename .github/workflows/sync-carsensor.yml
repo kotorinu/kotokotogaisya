@@ -41,6 +41,9 @@ jobs:
           KOTOKOTO_ADMIN_KEY: ${{ secrets.KOTOKOTO_ADMIN_KEY }}
           MAX_CARS: "20"
           NEW_DAYS: "14"
+          # CGI(とくとくBB)が無くても公開ページ取得だけで data/cars.json を更新・コミットする
+          # （Vercelはカーセンサー画像の直リンク方式で動くため再ホスト不要）
+          WRITE_LOCAL: "1"
           DRY_RUN: ${{ github.event.inputs.dry_run == 'true' && '1' || '' }}
         run: npm run sync
 

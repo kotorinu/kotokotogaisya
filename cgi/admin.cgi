@@ -10,8 +10,8 @@ use CGI;
 
 binmode STDOUT, ":encoding(UTF-8)";
 
-# IMPORTANT: change this before uploading to the public server.
-my $ADMIN_KEY = 'change-this-admin-key';
+# ▼ サーバーにアップ後、この値を実際のパスワードに書き換えてください
+my $ADMIN_KEY = 'CHANGE_THIS_KEY';
 my $ROOT = abs_path("$Bin/..");
 my $DATA_FILE = "$ROOT/data/cars.json";
 my $CAR_ASSET_DIR = "$ROOT/assets/cars";

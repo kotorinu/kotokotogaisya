@@ -4,7 +4,7 @@ function DXPage({ go }) {
     <div className="fade">
       {/* hero */}
       <section className="hero" style={{ borderBottom: "1px solid var(--line-soft)" }}>
-        <div className="wrap" style={{ gridTemplateColumns: "1.05fr .95fr" }}>
+        <div className="wrap">
           <div>
             <Eyebrow en="DX SUPPORT" ja="DX支援" />
             <h1 style={{ marginTop: 24, fontSize: "clamp(30px,3.4vw,46px)", lineHeight: 1.4 }}>
@@ -21,7 +21,7 @@ function DXPage({ go }) {
               <a className="btn btn--ghost" href="#flow">進め方を見る</a>
             </div>
           </div>
-          <div className="hero-visual" style={{ aspectRatio: "4/5" }}>
+          <div className="hero-visual">
             <Ph src={SITE_ASSETS.dxHero} alt="DX支援を表すダッシュボードとデスク" style={{ width: "100%", height: "100%" }} />
           </div>
         </div>

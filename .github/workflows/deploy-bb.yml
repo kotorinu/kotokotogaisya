@@ -1,0 +1,50 @@
+name: とくとくBB(公式ドメイン)へサイト本体をデプロイ
+
+# 公開ファイル（index.html / site.js / robots.txt / sitemap.xml / favicon.svg）が
+# master に push されたら、とくとくBBの公開ディレクトリへFTPアップロードする。
+# ※ kotokoto-gaisya.com のDNSはとくとくBB(Apache)を向いており、Vercelは vercel.app URLのみ。
+#    data/cars.json は sync-carsensor.yml が毎日アップロードする（このワークフローの対象外）。
+on:
+  push:
+    branches: [master]
+    paths:
+      - index.html
+      - site.js
+      - robots.txt
+      - sitemap.xml
+      - favicon.svg
+      - .github/workflows/deploy-bb.yml
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-bb
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: チェックアウト
+        uses: actions/checkout@v4
+
+      - name: とくとくBBへFTPアップロード
+        env:
+          BB_FTP_HOST: ${{ secrets.BB_FTP_HOST }}
+          BB_FTP_USER: ${{ secrets.BB_FTP_USER }}
+          BB_FTP_PASS: ${{ secrets.BB_FTP_PASS }}
+        run: |
+          if [ -z "$BB_FTP_HOST" ] || [ -z "$BB_FTP_USER" ] || [ -z "$BB_FTP_PASS" ]; then
+            echo "BB FTP secrets 未設定のためスキップ（BB_FTP_HOST/USER/PASS）"
+            exit 0
+          fi
+          for f in index.html site.js robots.txt sitemap.xml favicon.svg; do
+            curl -sS --fail --user "$BB_FTP_USER:$BB_FTP_PASS" -T "$f" "ftp://$BB_FTP_HOST/$f"
+            echo "uploaded: $f"
+          done
+
+      - name: 反映確認（本番URLの郵便番号と canonical をチェック）
+        run: |
+          sleep 5
+          html=$(curl -sS http://kotokoto-gaisya.com/ || true)
+          echo "$html" | grep -o "572-00[0-9][0-9]" | sort | uniq -c || true
+          echo "$html" | grep -o '<link rel="canonical"[^>]*>' || true

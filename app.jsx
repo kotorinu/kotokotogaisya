@@ -29,7 +29,6 @@ function App() {
   switch (route.name) {
     case "cars": page = <CarsPage go={go} />; break;
     case "car": page = <CarDetail go={go} id={route.params.id} />; break;
-    case "dx": page = <DXPage go={go} />; break;
     case "company": page = <CompanyPage go={go} />; break;
     case "contact": page = <ContactPage go={go} />; break;
     default: page = <HomePage go={go} />;

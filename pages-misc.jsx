@@ -4,7 +4,7 @@ function CompanyPage({ go }) {
     ["商号", "ことこと株式会社（Kotokoto Inc.）"],
     ["所在地", "〒572-0058　大阪府寝屋川市黒原橘町4-1"],
     ["設立", "2025年"],
-    ["事業内容", "中古自動車の販売／DX支援（AIチャットボット・業務自動化・Web・EC・LP・ホームページ制作）"],
+    ["事業内容", "中古自動車の販売"],
     ["電話", "072-814-9416"],
   ];
   return (
@@ -18,7 +18,7 @@ function CompanyPage({ go }) {
             <h2 style={{ fontSize: 24, marginBottom: 8 }}>まじめに、コツコツ。</h2>
             <p style={{ color: "var(--ink-soft)", fontSize: 15, maxWidth: "54ch" }}>
               社名の「ことこと」には、煮込み料理のように、時間をかけてていねいに育てるという思いを込めています。
-              派手さよりも、確かさを。一台の車も、一つの業務改善も、お客様の暮らしと仕事をやさしく前へ進める“こと”だと考えています。
+              派手さよりも、確かさを。一台一台の車が、お客様の暮らしをやさしく前へ進める“こと”だと考えています。
             </p>
             <table className="cprofile" style={{ marginTop: 34 }}>
               <tbody>
@@ -84,7 +84,7 @@ function ContactPage({ go }) {
         <Eyebrow en="CONTACT" ja="お問い合わせ" />
         <h1 className="serif" style={{ fontSize: "clamp(30px,3.6vw,46px)", marginTop: 18 }}>お問い合わせ</h1>
         <p className="lead" style={{ color: "var(--ink-soft)", marginTop: 14, maxWidth: "52ch" }}>
-          車両のご相談、DX支援のご依頼、その他お問い合わせはこちらから。2営業日以内にご返信いたします。
+          車両のご相談、その他お問い合わせはこちらから。2営業日以内にご返信いたします。
         </p>
 
         <div style={{ display: "grid", gridTemplateColumns: "1fr .42fr", gap: 56, marginTop: 44, alignItems: "start" }} className="company-split">
@@ -103,7 +103,7 @@ function ContactPage({ go }) {
                 <div className="field full">
                   <label>お問い合わせ種別</label>
                   <div className="chips">
-                    {["車両について", "DX支援について", "その他"].map((t) => (
+                    {["車両について", "その他"].map((t) => (
                       <button type="button" key={t} className={"chip" + (type === t ? " on" : "")} onClick={() => setType(t)}>{t}</button>
                     ))}
                   </div>

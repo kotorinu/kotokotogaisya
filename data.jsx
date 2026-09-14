@@ -92,68 +92,10 @@ const CARS = [
 
 const BODY_TYPES = ["すべて", "SUV", "ミニバン", "セダン", "コンパクト", "軽自動車", "商用バン"];
 
-const SERVICES = [
-  {
-    id: "ai-consul", no: "01", title: "AI活用・AIコンサルティング", en: "AI CONSULTING",
-    lead: "御社だけの「使えるAI」を、一緒に見つける。",
-    desc: "「AIを使いたいけど何から始めれば」という段階から伴走します。業務の棚卸しから始め、御社の規模・予算・体制に合ったAI活用・業務効率化の方法を提案。導入後の運用まで支援します。",
-    points: ["AI活用の方針整理・ロードマップ", "ChatGPT・生成AI の業務組み込み", "導入後の運用・改善サポート"],
-  },
-  {
-    id: "chatbot", no: "02", title: "AIチャットボット導入", en: "AI CHATBOT",
-    lead: "問い合わせ対応を、24時間そのままに。",
-    desc: "AIチャットボットで問い合わせの一次対応を自動化。人手をかけずに機会損失を減らします。社内FAQや資料を学習させ、御社らしいAIに育てられます。",
-    points: ["FAQ・社内資料の学習", "Web・LINE への設置", "有人対応への引き継ぎ"],
-  },
-  {
-    id: "automation", no: "03", title: "業務自動化・業務効率化", en: "AUTOMATION",
-    lead: "繰り返しの作業を、仕組みに任せる。",
-    desc: "転記・集計・通知といった毎日の手作業をAI・自動化ツールで効率化。業務効率化によって本来の仕事に集中できる時間を取り戻します。",
-    points: ["スプレッドシート・システム連携", "定型メール・通知の自動化", "データ集計・レポート自動化"],
-  },
-  {
-    id: "web", no: "04", title: "Webサイト・EC制作", en: "WEB & EC",
-    lead: "売れる・伝わる、Webの入り口を。",
-    desc: "コーポレートサイトからネットショップまで、目的に合わせて設計・制作します。公開後の更新・改善まで継続して伴走します。",
-    points: ["要件整理・設計", "デザイン・実装", "公開後の運用・改善"],
-  },
-  {
-    id: "lp", no: "05", title: "LP制作", en: "LANDING PAGE",
-    lead: "ひとつの行動に、まっすぐ導く。",
-    desc: "キャンペーンや商品訴求のための1枚ページを制作。訴求の優先順位を整理し、問い合わせ・購入につながる構成に仕上げます。",
-    points: ["訴求設計・構成案", "デザイン・実装", "計測タグの設置"],
-  },
-  {
-    id: "hp", no: "06", title: "ホームページ制作", en: "HOMEPAGE",
-    lead: "小さく始めて、ていねいに育てる。",
-    desc: "これから初めてサイトを持つ事業者の方へ。必要十分な構成で無理なく公開し、運用しながら少しずつ整えていきます。",
-    points: ["スマホ対応デザイン", "お問い合わせフォーム", "更新しやすい構成"],
-  },
-];
-
-const STEPS = [
-  { no: "01", title: "ご相談・ヒアリング", desc: "現状の困りごとと目標をうかがい、対象範囲を一緒に決めます。" },
-  { no: "02", title: "ご提案・お見積り", desc: "小さく始められる形で、優先順位と費用感をご提示します。" },
-  { no: "03", title: "制作・導入", desc: "短いサイクルで形にし、確認をいただきながら進めます。" },
-  { no: "04", title: "運用・改善", desc: "公開・導入後も数字を見ながら継続的に改善します。" },
-];
-
-const WORKS = [
-  { tag: "ホームページ制作", title: "自社コーポレートサイト", desc: "車両販売とDX支援を統括するサイトを内製で構築。" },
-  { tag: "業務自動化", title: "在庫情報の自動更新", desc: "車両フィードを取り込み、在庫ページを自動更新する仕組み。" },
-  { tag: "AIチャットボット", title: "問い合わせ一次対応", desc: "FAQを学習したチャットで、夜間・休業日もカバー。" },
-];
-
 const SITE_ASSETS = {
-  hero: "assets/images/hero-office-dx-subtle-car.webp",
+  hero: "assets/images/business-vehicles.webp",
   businessVehicles: "assets/images/business-vehicles.webp",
-  businessDx: "assets/images/business-dx.webp",
-  dxHero: "assets/images/business-dx.webp",
-  workAutomation: "assets/images/work-automation.webp",
-  workHomepage: "assets/images/work-homepage.webp",
-  workInventory: "assets/images/work-inventory.webp",
-  workChatbot: "assets/images/work-chatbot.webp",
   company: "assets/images/business-vehicles.webp",
 };
 
-Object.assign(window, { CARS, BODY_TYPES, SERVICES, STEPS, WORKS, SITE_ASSETS });
+Object.assign(window, { CARS, BODY_TYPES, SITE_ASSETS });

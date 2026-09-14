@@ -57,7 +57,6 @@ function Header({ route, go }) {
   const links = [
   { id: "home", ja: "ホーム", en: "HOME" },
   { id: "cars", ja: "車両情報", en: "VEHICLES" },
-  { id: "dx", ja: "DX支援", en: "DX SUPPORT" },
   { id: "company", ja: "会社概要", en: "COMPANY" }];
   const navTo = (id) => {
     setMenuOpen(false);
@@ -139,7 +138,7 @@ function Band({ go }) {
         <div>
           <Eyebrow en="CONTACT" ja="お問い合わせ" />
           <h2 style={{ marginTop: 18 }}>まずは、お気軽にご相談を。</h2>
-          <p>車両のこと、業務のDXのこと。小さなお困りごとからで構いません。<br />御社に合った無理のないご提案をいたします。</p>
+          <p>お車選びのこと、ご購入のこと。小さなお困りごとからで構いません。<br />お客様に合った無理のないご提案をいたします。</p>
         </div>
         <div style={{ display: "flex", gap: 14, flexWrap: "wrap" }}>
           <a className="btn btn--solid" onClick={() => go("contact")}>相談してみる<Icon.arrow /></a>
@@ -158,12 +157,11 @@ function Footer({ go }) {
         <div className="top">
           <div className="fbrand">
             <div className="name">ことこと株式会社</div>
-            <p>まじめに、コツコツ。良質な車両販売と、中小企業のためのDX支援。大阪・寝屋川から、地域の事業に寄り添います。</p>
+            <p>まじめに、コツコツ。良質な中古車を、適正価格で。大阪・寝屋川から、地域の皆さまのカーライフに寄り添います。</p>
           </div>
           <div className="fcol">
             <h4>事業</h4>
             <a onClick={() => go("cars")}>車両情報</a>
-            <a onClick={() => go("dx")}>DX支援</a>
           </div>
           <div className="fcol">
             <h4>会社</h4>

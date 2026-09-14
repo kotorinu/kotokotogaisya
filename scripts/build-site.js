@@ -10,7 +10,6 @@ const files = [
   "ui.jsx",
   "pages-home.jsx",
   "pages-cars.jsx",
-  "pages-dx.jsx",
   "pages-misc.jsx",
   "app.jsx",
 ];
